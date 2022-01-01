@@ -9,7 +9,74 @@
 </head>
 
 <body>
+    <h2>Binary division using non-restoring method</h2>
+    <div style="display:flex;">
+        <div style="display: flex;">
+            <div style="display: flex; align-items: center; margin-right: 1px; min-width: 24px;">
+                A =
+            </div>
+            <div style="display: flex; flex-direction: column; width: 95%;">
+                <input id="dividentNumerator" value="-15" style="height: 50%;">
+                <input id="dividentDenominator" value="128" style="height: 50%;">
+            </div>
+        </div>
+        <div style="display: flex; margin-left: 5px;">
+            <div style="display: flex; align-items: center; margin-right: 1px; min-width: 24px;">
+                B =
+            </div>
+            <div style="display: flex; flex-direction: column; width: 95%;">
+                <input id="divisiorNumerator" value="3" style="height: 50%;">
+                <input id="divisiorDenumerator" value="8" style="height: 50%;">
+            </div>
+        </div>
+    </div>
+    <h3 style="position: fixed; bottom: 0; margin-right: 5px; width: 100%;">
+        <a style="display: flex; justify-content: center;"
+            href="https://github.com/huberti1/DividingBinaryNumbersUsingNonRestoringMethod">
+            <img src="github.png" width="32px">
+        </a>
+    </h3>
 
+    <script>
+        var dividentNumerator = document.getElementById("dividentNumerator");
+        var dividentDenominator = document.getElementById("dividentDenominator");
+        var divisiorNumerator = document.getElementById("divisiorNumerator");
+        var divisiorDenumerator = document.getElementById("divisiorDenumerator");
+        function decToBin(dec) {
+            if (dec >= 0) {
+                return dec.toString(2);
+            }
+            else {
+                /* Here you could represent the number in 2s compliment but this is not what 
+                   JS uses as its not sure how many bits are in your number range. There are 
+                   some suggestions https://stackoverflow.com/questions/10936600/javascript-decimal-to-binary-64-bit 
+                */
+                return (~dec).toString(2);
+            }
+        }
+        function checkAbsDividentLowerThanAbsDivisior() {
+            // TODO: Is it possible that there will be some rounding errors on below division
+            // TODO: Denominator should not be 0
+            // TODO: Denominator has to be power of 2?
+            // TODO: Numerator can not be greater than denominator?
+            var divident = dividentNumerator.value / dividentDenominator.value;
+            var divisior = divisiorNumerator.value / divisiorDenumerator.value;
+            if (Math.abs(divident) < Math.abs(divisior)) {
+                // TODO: Why it's not displayed correctly
+                alert(Number(-15 / 128).toString(2));
+                alert(decToBin(divident));
+            }
+            else {
+                // TODO: Display it in gui somehow
+                alert("nie");
+            }
+        };
+        window.onload = checkAbsDividentLowerThanAbsDivisior;
+        dividentNumerator.addEventListener("input", checkAbsDividentLowerThanAbsDivisior);
+        dividentDenominator.addEventListener("input", checkAbsDividentLowerThanAbsDivisior);
+        divisiorNumerator.addEventListener("input", checkAbsDividentLowerThanAbsDivisior);
+        divisiorDenumerator.addEventListener("input", checkAbsDividentLowerThanAbsDivisior);
+    </script>
 </body>
 
 </html>
